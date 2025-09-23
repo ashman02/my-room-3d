@@ -19,7 +19,7 @@ type GLTFResult = GLTF & {
   }
 }
 
-export function Model(props: JSX.IntrinsicElements['group']) {
+export default function Window(props: JSX.IntrinsicElements['group']) {
   const { nodes, materials } = useGLTF('/models/window.glb') as unknown as GLTFResult
   return (
     <group {...props} dispose={null}>

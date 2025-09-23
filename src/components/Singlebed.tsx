@@ -55,5 +55,5 @@ const Singlebed = (props: JSX.IntrinsicElements["group"]) => {
 	)
 }
 
-useGLTF.preload("/public/models/single_bed-transformed.glb")
+useGLTF.preload("/models/single_bed-transformed.glb")
 export default Singlebed

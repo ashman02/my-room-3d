@@ -13,13 +13,11 @@ type GLTFResult = GLTF & {
 		["Node-Mesh"]: THREE.Mesh
 		["Node-Mesh_1"]: THREE.Mesh
 		["Node-Mesh_2"]: THREE.Mesh
-		["Node-Mesh_3"]: THREE.Mesh
 	}
 	materials: {
-		Executive: THREE.MeshStandardMaterial
-		Executive__1: THREE.MeshStandardMaterial
-		Executive__2: THREE.MeshStandardMaterial
-		Executive__3: THREE.MeshStandardMaterial
+		Office_Cha: THREE.MeshStandardMaterial
+		Office_Cha_1: THREE.MeshStandardMaterial
+		Office_Cha_2: THREE.MeshStandardMaterial
 	}
 }
 
@@ -27,23 +25,20 @@ export default function Chair(props: JSX.IntrinsicElements["group"]) {
 	const { nodes, materials } = useGLTF(
 		"/models/chair.glb"
 	) as unknown as GLTFResult
+	materials.Office_Cha.wireframe = true
 	return (
 		<group {...props} dispose={null}>
 			<mesh
 				geometry={nodes["Node-Mesh"].geometry}
-				material={materials.Executive}
+				material={materials.Office_Cha}
 			/>
 			<mesh
 				geometry={nodes["Node-Mesh_1"].geometry}
-				material={materials.Executive__1}
+				material={materials.Office_Cha_1}
 			/>
 			<mesh
 				geometry={nodes["Node-Mesh_2"].geometry}
-				material={materials.Executive__2}
-			/>
-			<mesh
-				geometry={nodes["Node-Mesh_3"].geometry}
-				material={materials.Executive__3}
+				material={materials.Office_Cha_2}
 			/>
 		</group>
 	)
