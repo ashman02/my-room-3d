@@ -64,8 +64,11 @@ const Room = () => {
 			</group>
 
 			{/* Backwall with door  */}
-			<group position-z={2.05}>
-				{/* left part of the wall */}
+			{/* left part of the wall */}
+			{/* Door  */}
+			{/* Door upper wall */}
+
+			{/* <group position-z={2.05}>
 				<mesh
 					material={wallMaterial}
 					geometry={boxGeometry}
@@ -74,13 +77,11 @@ const Room = () => {
 					position={[-0.625, 1.5, 0]}
 				/>
 
-				{/* Door  */}
 				<Door
 					scale={0.8}
 					position={[1.875, 0.05, 0.07]}
 					rotation-y={Math.PI}
 				/>
-				{/* Door upper wall */}
 				<mesh
 					material={wallMaterial}
 					geometry={boxGeometry}
@@ -88,7 +89,7 @@ const Room = () => {
 					scale={[0.1, 0.78, 1.26]}
 					position={[1.875, 2.61, 0]}
 				/>
-			</group>
+			</group> */}
 
 			{/* Ceiling  Note-Get the fan as well and animation as well switch to turn on lights and fan*/}
 			<mesh geometry={boxGeometry} position-y={3} scale={[5, 0.1, 4]}>

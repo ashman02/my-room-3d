@@ -2,6 +2,7 @@ import Singlebed from "./Singlebed"
 import Desk from "./Desk"
 import Computer from "./Computer"
 import { useControls } from "leva"
+import Chair from "./Chair"
 
 const RoomContent = () => {
 	// position of the desk
@@ -28,6 +29,8 @@ const RoomContent = () => {
 					position={[-0.04, 0.642, 0]}
 					rotation-y={Math.PI * 0.5}
 				/>
+				{/* We will fix this later */}
+				{/* <Chair scale={4} /> */}
 			</group>
 		</>
 	)
