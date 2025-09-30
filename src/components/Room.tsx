@@ -1,21 +1,11 @@
-import { useControls } from "leva"
 import * as THREE from "three"
 import Window from "./Window"
+import Door from "./Door"
 
 const boxGeometry = new THREE.BoxGeometry(1, 1, 1)
 const wallMaterial = new THREE.MeshStandardMaterial({ color: "white" })
 
 const Room = () => {
-	const { rightWallPosition } = useControls("Right Wall", {
-		rightWallPosition: {
-			value: {
-				x: 0,
-				y: 0,
-				z: 0,
-			},
-			step: 0.001,
-		},
-	})
 	return (
 		<>
 			{/* Floor */}
@@ -73,7 +63,34 @@ const Room = () => {
 				/>
 			</group>
 
-			{/* Ceiling  Note-Get the fan as well*/}
+			{/* Backwall with door  */}
+			<group position-z={2.05}>
+				{/* left part of the wall */}
+				<mesh
+					material={wallMaterial}
+					geometry={boxGeometry}
+					scale={[0.1, 3, 3.75]}
+					rotation-y={Math.PI * 0.5}
+					position={[-0.625, 1.5, 0]}
+				/>
+
+				{/* Door  */}
+				<Door
+					scale={0.8}
+					position={[1.875, 0.05, 0.07]}
+					rotation-y={Math.PI}
+				/>
+				{/* Door upper wall */}
+				<mesh
+					material={wallMaterial}
+					geometry={boxGeometry}
+					rotation-y={Math.PI * 0.5}
+					scale={[0.1, 0.78, 1.26]}
+					position={[1.875, 2.61, 0]}
+				/>
+			</group>
+
+			{/* Ceiling  Note-Get the fan as well and animation as well switch to turn on lights and fan*/}
 			<mesh geometry={boxGeometry} position-y={3} scale={[5, 0.1, 4]}>
 				<meshStandardMaterial color={"yellowgreen"} />
 			</mesh>
