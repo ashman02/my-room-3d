@@ -2,7 +2,8 @@ import Singlebed from "./Singlebed"
 import Desk from "./Desk"
 import Computer from "./Computer"
 import { useControls } from "leva"
-import Chair from "./Chair"
+import Bookshelf from "./Bookshelf"
+// import Chair from "./Chair"
 
 const RoomContent = () => {
 	// position of the desk
@@ -32,6 +33,9 @@ const RoomContent = () => {
 				{/* We will fix this later */}
 				{/* <Chair scale={4} /> */}
 			</group>
+
+			{/* Bookshelf on back wall along with the door */}
+			<Bookshelf position={[-2.02, 1.5, 1.84]} />
 		</>
 	)
 }
