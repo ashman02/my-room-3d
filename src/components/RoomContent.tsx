@@ -4,7 +4,7 @@ import Computer from "./Computer"
 import { useControls } from "leva"
 import Bookshelf from "./Bookshelf"
 import Frame from "./Frame"
-import { Image } from "@react-three/drei"
+import { Image, Text } from "@react-three/drei"
 import CeilingFan from "./CeilingFan"
 import LightBulb from "./LightBulb"
 // import Chair from "./Chair"
@@ -87,6 +87,20 @@ const RoomContent = () => {
 				rotation-x={-Math.PI * 0.5 - 0.2}
 				position={[bulbPosition.x, bulbPosition.y, bulbPosition.z]}
 			/>
+
+			{/* Intro Text on the bed wall */}
+			<Text 
+				font="/fonts/bebas-neue.woff"
+				fontSize={0.2}
+				maxWidth={2}
+				textAlign="center"
+				lineHeight={1}
+				rotation-y={-Math.PI * 0.5}
+				position={[2.49, 1.5, 0]}
+			>
+				Hi nice to meet you. My name is Ashman and I am a full stack creative developer. Welcome in my world.
+			</Text>
+
 		</>
 	)
 }
