@@ -5,6 +5,7 @@ import { useControls } from "leva"
 import Bookshelf from "./Bookshelf"
 import Frame from "./Frame"
 import { Image } from "@react-three/drei"
+import CeilingFan from "./CeilingFan"
 // import Chair from "./Chair"
 
 const RoomContent = () => {
@@ -66,6 +67,9 @@ const RoomContent = () => {
 				/>
 				<Frame scale={0.5} position-x={-0.6} />
 			</group>
+
+			{/* Ceiling Fan */}
+			<CeilingFan scale={0.001} position-y={2.743} />
 		</>
 	)
 }
