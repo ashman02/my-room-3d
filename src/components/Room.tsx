@@ -1,16 +1,24 @@
 import * as THREE from "three"
 import Window from "./Window"
 import Door from "./Door"
+import { useTexture } from "@react-three/drei"
 
 const boxGeometry = new THREE.BoxGeometry(1, 1, 1)
 const wallMaterial = new THREE.MeshStandardMaterial({ color: "white" })
 
 const Room = () => {
+	// Load the texture and apply to the wall material.
+	useTexture("/textures/wall-texture.jpeg", (texture) => {
+		wallMaterial.map = texture
+		wallMaterial.needsUpdate = true
+	})
+	const floorTexture = useTexture("/textures/floor-texture.jpeg")
+	
 	return (
 		<>
 			{/* Floor */}
 			<mesh geometry={boxGeometry} scale={[5, 0.1, 4]}>
-				<meshStandardMaterial color={"yellowgreen"} />
+				<meshStandardMaterial map={floorTexture} />
 			</mesh>
 
 			{/* right wall */}
@@ -98,5 +106,7 @@ const Room = () => {
 		</>
 	)
 }
-
+useTexture.preload("/textures/wall-texture.jpeg")
+useTexture.preload("/textures/floor-texture.jpeg")
 export default Room
+
