@@ -6,6 +6,7 @@ import Bookshelf from "./Bookshelf"
 import Frame from "./Frame"
 import { Image } from "@react-three/drei"
 import CeilingFan from "./CeilingFan"
+import LightBulb from "./LightBulb"
 // import Chair from "./Chair"
 
 const RoomContent = () => {
@@ -32,6 +33,13 @@ const RoomContent = () => {
 		imageScale: {
 			value: { x: 0.63, y: 0.63 },
 			step: 0.001,
+		},
+	})
+	// position of the bulb
+	const { bulbPosition } = useControls("Bulb", {
+		bulbPosition: {
+			value: { x: 0, y: 2.8, z: 2.32 },
+			step: 0.01,
 		},
 	})
 	return (
@@ -70,6 +78,15 @@ const RoomContent = () => {
 
 			{/* Ceiling Fan */}
 			<CeilingFan scale={0.001} position-y={2.743} />
+
+			{/* Light bulbs */}
+			{/* one on the door wall */}
+			<LightBulb
+				scale={0.5}
+				// rotation with little bit of a tilt.
+				rotation-x={-Math.PI * 0.5 - 0.2}
+				position={[bulbPosition.x, bulbPosition.y, bulbPosition.z]}
+			/>
 		</>
 	)
 }
