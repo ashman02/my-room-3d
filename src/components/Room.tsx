@@ -5,15 +5,29 @@ import { useTexture } from "@react-three/drei"
 
 const boxGeometry = new THREE.BoxGeometry(1, 1, 1)
 const wallMaterial = new THREE.MeshStandardMaterial({ color: "white" })
+const smallerWallMaterial = new THREE.MeshStandardMaterial({ color: "white" })
 
 const Room = () => {
 	// Load the texture and apply to the wall material.
-	useTexture("/textures/wall-texture.jpeg", (texture) => {
-		wallMaterial.map = texture
-		wallMaterial.needsUpdate = true
-	})
+	const wallTexture = useTexture("/textures/wall-texture-2.jpg")
 	const floorTexture = useTexture("/textures/floor-texture.jpeg")
-	
+
+	// main texture for bigger walls
+	const wallTex = wallTexture.clone()
+	wallTex.wrapS = THREE.RepeatWrapping
+	wallTex.wrapT = THREE.RepeatWrapping
+	wallTex.repeat.y = 2
+	wallTex.minFilter = THREE.NearestFilter
+	wallTex.magFilter = THREE.NearestFilter
+	wallTex.generateMipmaps = false
+	wallMaterial.map = wallTex
+	wallMaterial.needsUpdate = true
+
+	// no repeat on smaller walls
+	const smallerWallTex = wallTexture.clone()
+	smallerWallMaterial.map = smallerWallTex
+	smallerWallMaterial.needsUpdate = true
+
 	return (
 		<>
 			{/* Floor */}
@@ -50,7 +64,7 @@ const Room = () => {
 				{/* upper part of the window */}
 				<mesh
 					position-y={0.9}
-					material={wallMaterial}
+					material={smallerWallMaterial}
 					geometry={boxGeometry}
 					scale={[0.1, 1.2, 0.55]}
 				/>
@@ -58,7 +72,7 @@ const Room = () => {
 				{/* lower part of the window */}
 				<mesh
 					position-y={-0.9}
-					material={wallMaterial}
+					material={smallerWallMaterial}
 					geometry={boxGeometry}
 					scale={[0.1, 1.2, 0.55]}
 				/>
@@ -76,7 +90,7 @@ const Room = () => {
 			{/* Door  */}
 			{/* Door upper wall */}
 
-			{/* <group position-z={2.05}>
+			<group position-z={2.05}>
 				<mesh
 					material={wallMaterial}
 					geometry={boxGeometry}
@@ -91,22 +105,21 @@ const Room = () => {
 					rotation-y={Math.PI}
 				/>
 				<mesh
-					material={wallMaterial}
+					material={smallerWallMaterial}
 					geometry={boxGeometry}
 					rotation-y={Math.PI * 0.5}
 					scale={[0.1, 0.78, 1.26]}
 					position={[1.875, 2.61, 0]}
 				/>
-			</group> */}
+			</group>
 
 			{/* Ceiling  Note-Get the fan as well and animation as well switch to turn on lights and fan*/}
 			<mesh geometry={boxGeometry} position-y={3} scale={[5, 0.1, 4]}>
-				<meshStandardMaterial color={"yellowgreen"} />
+				<meshStandardMaterial map={wallTex} />
 			</mesh>
 		</>
 	)
 }
-useTexture.preload("/textures/wall-texture.jpeg")
+useTexture.preload("/textures/wall-texture-2.jpg")
 useTexture.preload("/textures/floor-texture.jpeg")
 export default Room
-
