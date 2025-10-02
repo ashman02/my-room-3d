@@ -11,12 +11,14 @@ const Room = () => {
 	// Load the texture and apply to the wall material.
 	const wallTexture = useTexture("/textures/wall-texture-2.jpg")
 	const floorTexture = useTexture("/textures/floor-texture.jpeg")
+	const roofTexture = useTexture("/textures/roof-texture.jpg")
 
 	// main texture for bigger walls
 	const wallTex = wallTexture.clone()
 	wallTex.wrapS = THREE.RepeatWrapping
 	wallTex.wrapT = THREE.RepeatWrapping
 	wallTex.repeat.y = 2
+	wallTex.repeat.x = 2
 	wallTex.minFilter = THREE.NearestFilter
 	wallTex.magFilter = THREE.NearestFilter
 	wallTex.generateMipmaps = false
@@ -27,6 +29,13 @@ const Room = () => {
 	const smallerWallTex = wallTexture.clone()
 	smallerWallMaterial.map = smallerWallTex
 	smallerWallMaterial.needsUpdate = true
+
+	roofTexture.wrapS = THREE.RepeatWrapping
+	roofTexture.wrapT = THREE.RepeatWrapping
+	roofTexture.repeat.set(5, 4)
+	roofTexture.minFilter = THREE.NearestFilter
+	roofTexture.magFilter = THREE.NearestFilter
+	roofTexture.generateMipmaps = false
 
 	return (
 		<>
@@ -115,7 +124,7 @@ const Room = () => {
 
 			{/* Ceiling  Note-Get the fan as well and animation as well switch to turn on lights and fan*/}
 			<mesh geometry={boxGeometry} position-y={3} scale={[5, 0.1, 4]}>
-				<meshStandardMaterial map={wallTex} />
+				<meshStandardMaterial map={roofTexture} />
 			</mesh>
 		</>
 	)
