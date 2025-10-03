@@ -3,6 +3,7 @@ import Room from "./Room"
 import RoomContent from "./RoomContent"
 import Lights from "./Lights"
 import OuterEnvironment from "./OuterEnvironment"
+import MyAvatar from "./MyAvatar"
 
 const Experience = () => {
 	return (
@@ -13,6 +14,7 @@ const Experience = () => {
 			<RoomContent />
 			<Room />
 			<OuterEnvironment />
+			<MyAvatar />
 		</>
 	)
 }
