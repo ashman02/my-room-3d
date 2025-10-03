@@ -1,12 +1,12 @@
-import Singlebed from "./Singlebed"
-import Desk from "./Desk"
-import Computer from "./Computer"
+import Singlebed from "./models/Singlebed"
+import Desk from "./models/Desk"
+import Computer from "./models/Computer"
 import { useControls } from "leva"
-import Bookshelf from "./Bookshelf"
-import Frame from "./Frame"
+import Bookshelf from "./models/Bookshelf"
+import Frame from "./models/Frame"
 import { Image, Text } from "@react-three/drei"
-import CeilingFan from "./CeilingFan"
-import LightBulb from "./LightBulb"
+import CeilingFan from "./models/CeilingFan"
+import LightBulb from "./models/LightBulb"
 // import Chair from "./Chair"
 
 const RoomContent = () => {
@@ -89,7 +89,7 @@ const RoomContent = () => {
 			/>
 
 			{/* Intro Text on the bed wall */}
-			<Text 
+			<Text
 				font="/fonts/bebas-neue.woff"
 				fontSize={0.2}
 				maxWidth={2}
@@ -98,9 +98,9 @@ const RoomContent = () => {
 				rotation-y={-Math.PI * 0.5}
 				position={[2.49, 1.5, 0]}
 			>
-				Hi nice to meet you. My name is Ashman and I am a full stack creative developer. Welcome in my world.
+				Hi nice to meet you. My name is Ashman and I am a full stack
+				creative developer. Welcome in my world.
 			</Text>
-
 		</>
 	)
 }

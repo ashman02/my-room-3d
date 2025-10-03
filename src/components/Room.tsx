@@ -1,6 +1,6 @@
 import * as THREE from "three"
-import Window from "./Window"
-import Door from "./Door"
+import Window from "./models/Window"
+import Door from "./models/Door"
 import { useTexture } from "@react-three/drei"
 
 const boxGeometry = new THREE.BoxGeometry(1, 1, 1)

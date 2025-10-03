@@ -14,7 +14,7 @@ const Lights = () => {
 			value: { x: 0.02, y: 2.64, z: 1.56 },
 			step: 0.01,
 		},
-		intensity : { value: 4.0, min: 0, max: 10, step: 0.1 },
+		intensity : { value: 2.0, min: 0, max: 10, step: 0.1 },
 		decay : { value: 0.6, min: 0, max: 10, step: 0.1 },
 		color : {value : "#a4d6e8"},
 	})
