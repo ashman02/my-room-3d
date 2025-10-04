@@ -7,6 +7,7 @@ import Frame from "./models/Frame"
 import { Image, Text } from "@react-three/drei"
 import CeilingFan from "./models/CeilingFan"
 import LightBulb from "./models/LightBulb"
+import { CuboidCollider, RigidBody } from "@react-three/rapier"
 // import Chair from "./Chair"
 
 const RoomContent = () => {
@@ -44,12 +45,30 @@ const RoomContent = () => {
 	})
 	return (
 		<>
-			{/* Bed */}
-			<Singlebed />
+			<RigidBody
+				type="fixed"
+				position={[0.592, 0.05, 0.251]}
+				rotation-y={Math.PI}
+				scale={2}
+			>
+				{/* Bed */}
+				<Singlebed />
+			</RigidBody>
 
 			{/* Desk */}
 			<group position={[position.x, position.y, position.z]}>
-				<Desk scale={0.7} rotation-y={Math.PI * 0.5} />
+				<RigidBody
+					type="fixed"
+					scale={0.7}
+					rotation-y={Math.PI * 0.5}
+					colliders={false}
+				>
+					<Desk />
+					<CuboidCollider
+						args={[0.9, 0.5, 0.4]}
+						position={[0, 0.5, 0]}
+					/>
+				</RigidBody>
 				<Computer
 					scale={0.001}
 					position={[-0.04, 0.642, 0]}
@@ -60,7 +79,10 @@ const RoomContent = () => {
 			</group>
 
 			{/* Bookshelf on back wall along with the door */}
-			<Bookshelf position={[-2.02, 1.5, 1.84]} />
+			<RigidBody type="fixed" position={[-2.02, 1.5, 1.84]} colliders={false}>
+				<Bookshelf />
+				<CuboidCollider args={[0.46, 0.26, 0.15]} position={[0, 0.07, 0]} />
+			</RigidBody>
 
 			{/* Frames on the front wall */}
 			<group

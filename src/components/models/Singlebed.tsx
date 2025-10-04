@@ -8,7 +8,6 @@ import * as THREE from "three"
 import { useGLTF } from "@react-three/drei"
 import type { JSX } from "react"
 import type { GLTF } from "three/examples/jsm/Addons.js"
-import { useControls } from "leva"
 
 type GLTFResult = GLTF & {
 	nodes: {
@@ -34,9 +33,7 @@ const Singlebed = (props: JSX.IntrinsicElements["group"]) => {
 		<group
 			{...props}
 			dispose={null}
-			position={[0.592, 0.05, 0.251]}
-			rotation-y={Math.PI}
-			scale={2}
+			
 		>
 			<mesh geometry={nodes.cover.geometry} material={materials.carpet} />
 			<mesh
