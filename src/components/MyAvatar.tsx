@@ -1,6 +1,6 @@
 import { RapierRigidBody, RigidBody } from "@react-three/rapier"
 import Avatar from "./models/Avatar"
-import { useRef } from "react"
+import { useRef, useState } from "react"
 import { Group, Vector3 } from "three"
 import { useFrame } from "@react-three/fiber"
 import { useControls } from "leva"
@@ -44,6 +44,8 @@ const MyAvatar = () => {
 	const rigidBodyRef = useRef<RapierRigidBody>(null)
 	const container = useRef<Group>(null)
 	const character = useRef<Group>(null)
+
+	const [animation, setAnimation] = useState("Idle")
 
 	const characterRotationTarget = useRef(0)
 	const rotationTarget = useRef(0)
@@ -98,6 +100,10 @@ const MyAvatar = () => {
 					Math.cos(
 						rotationTarget.current + characterRotationTarget.current
 					) * WALK_SPEED
+
+				setAnimation("Walking")
+			} else {
+				setAnimation("Idle")
 			}
 
 			if (character.current) {
@@ -144,7 +150,7 @@ const MyAvatar = () => {
 						position-z={-1}
 					/>
 					<group ref={character}>
-						<Avatar scale={0.8} />
+						<Avatar scale={0.8} animation={animation} />
 					</group>
 				</group>
 			</RigidBody>

@@ -4,7 +4,7 @@ Command: npx gltfjsx@6.5.3 public/models/mymodel.glb -o src/components/Avatar.ts
 */
 
 import * as THREE from "three"
-import React, { useEffect, useRef, useState, type JSX } from "react"
+import React, { useEffect, useRef, type JSX } from "react"
 import { useGraph } from "@react-three/fiber"
 import { useAnimations, useFBX, useGLTF } from "@react-three/drei"
 import type { GLTF } from "three-stdlib"
@@ -37,8 +37,10 @@ type GLTFResult = GLTF & {
 	}
 	// animations: GLTFAction[]
 }
-
-export default function Avatar(props: JSX.IntrinsicElements["group"]) {
+export default function Avatar({
+	animation,
+	...props
+}: { animation: string } & JSX.IntrinsicElements["group"]) {
 	const { scene } = useGLTF("/models/mymodel.glb")
 	const clone = React.useMemo(() => SkeletonUtils.clone(scene), [scene])
 	const { nodes, materials } = useGraph(clone) as unknown as GLTFResult
@@ -59,15 +61,12 @@ export default function Avatar(props: JSX.IntrinsicElements["group"]) {
 		group
 	)
 
-	const [currentAnimation, setCurrentAnimation] = useState("Idle")
 	useEffect(() => {
-		if (!actions[currentAnimation]) return
-		actions[currentAnimation].reset().fadeIn(0.5).play()
+		actions[animation]?.reset().fadeIn(0.5).play()
 		return () => {
-			if (actions[currentAnimation])
-				actions[currentAnimation].fadeOut(0.5)
+			actions[animation]?.fadeOut(0.5)
 		}
-	}, [currentAnimation])
+	}, [animation])
 
 	return (
 		<group {...props} dispose={null} ref={group}>
