@@ -3,7 +3,7 @@ import Experience from "./components/Experience"
 import { Leva } from "leva"
 import { Perf } from "r3f-perf"
 import { KeyboardControls, type KeyboardControlsEntry } from "@react-three/drei"
-import { useMemo } from "react"
+import { useEffect, useMemo, useRef } from "react"
 
 type Controls = "forward" | "back" | "left" | "right"
 
@@ -26,6 +26,31 @@ function App() {
 		],
 		[]
 	)
+
+	// As of now play sound whenever user clicks on something but we are going to change this later with a better solution. 
+	// We are going to show a button and ask ready to start your experience and then play the sound
+	const backgroundAudioRef = useRef<HTMLAudioElement | null>(null)
+
+	useEffect(() => {
+		backgroundAudioRef.current = new Audio("/sounds/bg-sound.mp3")
+		backgroundAudioRef.current.loop = true
+		backgroundAudioRef.current.volume = 0.1
+
+		const startAudio = () => {
+			backgroundAudioRef.current?.play()
+			window.removeEventListener("click", startAudio)
+			window.removeEventListener("keydown", startAudio)
+		}
+
+		window.addEventListener("click", startAudio)
+		window.addEventListener("keydown", startAudio)
+
+		return () => {
+			window.removeEventListener("click", startAudio)
+			window.removeEventListener("keydown", startAudio)
+		}
+	}, [])
+
 	return (
 		<>
 			<Leva />

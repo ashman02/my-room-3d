@@ -57,6 +57,8 @@ const MyAvatar = () => {
 	const [, get] = useKeyboardControls<ControlsType>()
 	const isClicking = useRef(false)
 
+	const footstepAudioRef = useRef(new Audio("/sounds/footsteps.mp3"))
+
 	useEffect(() => {
 		const onMouseDown = () => {
 			isClicking.current = true
@@ -72,6 +74,8 @@ const MyAvatar = () => {
 		document.addEventListener("touchstart", onMouseDown)
 		document.addEventListener("touchend", onMouseUp)
 
+		footstepAudioRef.current.loop = true
+		footstepAudioRef.current.volume = 0.5
 		return () => {
 			document.removeEventListener("mousedown", onMouseDown)
 			document.removeEventListener("mouseup", onMouseUp)
@@ -135,8 +139,10 @@ const MyAvatar = () => {
 					) * WALK_SPEED
 
 				setAnimation("Walking")
+				footstepAudioRef.current.play()
 			} else {
 				setAnimation("Idle")
+				footstepAudioRef.current.pause()
 			}
 
 			if (character.current) {
