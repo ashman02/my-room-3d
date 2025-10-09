@@ -25,14 +25,14 @@ const RoomContent = () => {
 	// position of the frame group
 	const { framePosition } = useControls("frames", {
 		framePosition: {
-			value: { x: 0, y: 2.15, z: -1.98 },
+			value: { x: 0, y: 1.75, z: -1.98 },
 			step: 0.001,
 		},
 	})
 	// scale of our image
 	const { imageScale } = useControls("Image", {
 		imageScale: {
-			value: { x: 0.63, y: 0.63 },
+			value: 0.32,
 			step: 0.001,
 		},
 	})
@@ -88,14 +88,14 @@ const RoomContent = () => {
 			<group
 				position={[framePosition.x, framePosition.y, framePosition.z]}
 			>
-				<Frame scale={0.5} position-x={0.6} />
-				<Frame scale={1} />
+				<Frame scale={0.5} position-x={0.4} />
+				<Frame scale={0.5} />
 				<Image
 					url="/images/my-image.jpg"
-					scale={[imageScale.x, imageScale.y]}
+					scale={imageScale}
 					position-z={0.01}
 				/>
-				<Frame scale={0.5} position-x={-0.6} />
+				<Frame scale={0.5} position-x={-0.4} />
 			</group>
 
 			{/* Ceiling Fan */}
