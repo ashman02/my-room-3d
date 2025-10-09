@@ -8,6 +8,7 @@ import { Image, Text } from "@react-three/drei"
 import CeilingFan from "./models/CeilingFan"
 import LightBulb from "./models/LightBulb"
 import { CuboidCollider, RigidBody } from "@react-three/rapier"
+import Switch from "./Switch"
 // import Chair from "./Chair"
 
 const RoomContent = () => {
@@ -123,6 +124,8 @@ const RoomContent = () => {
 				Hi nice to meet you. My name is Ashman and I am a full stack
 				creative developer. Welcome in my world.
 			</Text>
+
+			<Switch position={[1, 1.5, 1.97]} rotation-y={Math.PI} rotation-z={Math.PI}  />
 		</>
 	)
 }
