@@ -8,10 +8,12 @@ import { Image, Text } from "@react-three/drei"
 import CeilingFan from "./models/CeilingFan"
 import LightBulb from "./models/LightBulb"
 import { CuboidCollider, RigidBody } from "@react-three/rapier"
-import Switch from "./Switch"
+import Switch from "./models/Switch"
+import useRoom from "../store/useRoom"
 // import Chair from "./Chair"
 
 const RoomContent = () => {
+	const {isLightOn, switchLight} = useRoom((state) => state)
 	// position of the desk
 	const { position } = useControls("desk", {
 		position: {
@@ -80,9 +82,16 @@ const RoomContent = () => {
 			</group>
 
 			{/* Bookshelf on back wall along with the door */}
-			<RigidBody type="fixed" position={[-2.02, 1.5, 1.84]} colliders={false}>
+			<RigidBody
+				type="fixed"
+				position={[-2.02, 1.5, 1.84]}
+				colliders={false}
+			>
 				<Bookshelf />
-				<CuboidCollider args={[0.46, 0.26, 0.15]} position={[0, 0.07, 0]} />
+				<CuboidCollider
+					args={[0.46, 0.26, 0.15]}
+					position={[0, 0.07, 0]}
+				/>
 			</RigidBody>
 
 			{/* Frames on the front wall */}
@@ -125,7 +134,15 @@ const RoomContent = () => {
 				creative developer. Welcome in my world.
 			</Text>
 
-			<Switch position={[1, 1.5, 1.97]} rotation-y={Math.PI} rotation-z={Math.PI}  />
+			<Switch
+				position={[1, 1.5, 1.97]}
+				rotation-y={Math.PI}
+				rotation-z={isLightOn ? Math.PI : 0}
+				onClick={(e) => {
+					e.stopPropagation()
+					switchLight()
+				}}
+			/>
 		</>
 	)
 }

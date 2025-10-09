@@ -1,23 +1,21 @@
 import { useControls } from "leva"
 import { useRef } from "react"
 import * as THREE from "three"
+import useRoom from "../store/useRoom"
 
 const Lights = () => {
+	const isLightOn = useRoom((state) => state.isLightOn)
 	const lightRef = useRef<THREE.Object3D>(null)
 
 	// position of the bulb
-	const { pointPosition, intensity, decay, color } = useControls(
-		"Point Light",
-		{
-			pointPosition: {
-				value: { x: 0.02, y: 2.64, z: 1.56 },
-				step: 0.01,
-			},
-			intensity: { value: 0.0, min: 0, max: 10, step: 0.1 },
-			decay: { value: 0.6, min: 0, max: 10, step: 0.1 },
-			color: { value: "#a4d6e8" },
-		}
-	)
+	const { pointPosition, decay, color } = useControls("Bulb Light", {
+		pointPosition: {
+			value: { x: 0.02, y: 2.64, z: 1.56 },
+			step: 0.01,
+		},
+		decay: { value: 0.6, min: 0, max: 10, step: 0.1 },
+		color: { value: "#a4d6e8" },
+	})
 
 	// moonlight
 	const {
@@ -48,7 +46,9 @@ const Lights = () => {
 
 			{/* We are going to use point light to mimic light bulb */}
 			<pointLight
-				args={[color, intensity, 0, decay]}
+				color={color}
+				intensity={isLightOn ? 2.0 : 0.0}
+				decay={decay}
 				position={[pointPosition.x, pointPosition.y, pointPosition.z]}
 			/>
 
