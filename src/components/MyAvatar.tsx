@@ -1,6 +1,6 @@
 import { RapierRigidBody, RigidBody } from "@react-three/rapier"
 import Avatar from "./models/Avatar"
-import { useRef, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import { Group, Vector3 } from "three"
 import { useFrame } from "@react-three/fiber"
 import { useControls } from "leva"
@@ -55,8 +55,32 @@ const MyAvatar = () => {
 	const cameraLookAtWorldPosition = useRef(new Vector3())
 	const cameraLookAt = useRef(new Vector3())
 	const [, get] = useKeyboardControls<ControlsType>()
+	const isClicking = useRef(false)
 
-	useFrame(({ camera }) => {
+	useEffect(() => {
+		const onMouseDown = () => {
+			isClicking.current = true
+		}
+
+		const onMouseUp = () => {
+			isClicking.current = false
+		}
+		// mouse event
+		document.addEventListener("mousedown", onMouseDown)
+		document.addEventListener("mouseup", onMouseUp)
+		// touch event
+		document.addEventListener("touchstart", onMouseDown)
+		document.addEventListener("touchend", onMouseUp)
+
+		return () => {
+			document.removeEventListener("mousedown", onMouseDown)
+			document.removeEventListener("mouseup", onMouseUp)
+			document.removeEventListener("touchstart", onMouseDown)
+			document.removeEventListener("touchend", onMouseUp)
+		}
+	}, [])
+
+	useFrame(({ camera, pointer }) => {
 		if (rigidBodyRef.current) {
 			// Lineal velocity of the character
 			const vel = rigidBodyRef.current.linvel()
@@ -73,6 +97,15 @@ const MyAvatar = () => {
 			if (get().back) {
 				movement.z = -1
 			}
+
+			if (isClicking.current) {
+				// x and y are going from -1 to 1 that's what we were doing before
+				if (Math.abs(pointer.x) > 0.1) {
+					movement.x = -pointer.x
+				}
+				movement.z = pointer.y + 0.4
+			}
+
 			if (get().left) {
 				movement.x = 1
 			}

@@ -37,6 +37,9 @@ function App() {
 						far: 200,
 						position: [0, 1, 1.2],
 					}}
+					style={{
+						touchAction: "none",
+					}}
 				>
 					<Perf position="top-left" />
 					<Experience />
