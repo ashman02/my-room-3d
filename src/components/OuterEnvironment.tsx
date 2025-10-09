@@ -1,11 +1,10 @@
 import { Sparkles, useTexture } from "@react-three/drei"
 import { useControls } from "leva"
 
-
 const OuterEnvironment = () => {
 	const moonTexture = useTexture("/textures/moon-texture.jpg")
 	const { position, speed, size, noise } = useControls("Outer Environment", {
-		position: { value: { x: -10, y: 2, z: 0 }, step: 0.01 },
+		position: { value: { x: -10, y: 1, z: 0 }, step: 0.01 },
 		speed: { value: 0.1, min: 0, max: 10, step: 0.1 },
 		size: { value: 4.0, min: 0, max: 10, step: 0.1 },
 		noise: { value: 0.3, min: 0, max: 10, step: 0.1 },

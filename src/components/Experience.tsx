@@ -10,7 +10,7 @@ const Experience = () => {
 		<>
 			<color args={["#041A40"]} attach={"background"} />
 			<Lights />
-			<Physics debug>
+			<Physics>
 				<RoomContent />
 				<Room />
 				<MyAvatar />
