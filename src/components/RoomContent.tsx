@@ -4,16 +4,20 @@ import Computer from "./models/Computer"
 import { useControls } from "leva"
 import Bookshelf from "./models/Bookshelf"
 import Frame from "./models/Frame"
-import { Image, Text } from "@react-three/drei"
+import { Image, Text, useCursor } from "@react-three/drei"
 import CeilingFan from "./models/CeilingFan"
 import LightBulb from "./models/LightBulb"
 import { CuboidCollider, RigidBody } from "@react-three/rapier"
 import Switch from "./models/Switch"
 import useRoom from "../store/useRoom"
+import { projectData } from "../utils/data"
+import { useState } from "react"
 // import Chair from "./Chair"
 
 const RoomContent = () => {
-	const {isLightOn, switchLight} = useRoom((state) => state)
+	const { isLightOn, switchLight } = useRoom((state) => state)
+	const [hovered, setHovered] = useState(false)
+	useCursor(hovered, "pointer")
 	// position of the desk
 	const { position } = useControls("desk", {
 		position: {
@@ -28,7 +32,7 @@ const RoomContent = () => {
 	// position of the frame group
 	const { framePosition } = useControls("frames", {
 		framePosition: {
-			value: { x: 0, y: 1.75, z: -1.98 },
+			value: { x: -0.8, y: 1.75, z: -1.98 },
 			step: 0.001,
 		},
 	})
@@ -98,14 +102,24 @@ const RoomContent = () => {
 			<group
 				position={[framePosition.x, framePosition.y, framePosition.z]}
 			>
-				<Frame scale={0.5} position-x={0.4} />
-				<Frame scale={0.5} />
-				<Image
-					url="/images/my-image.jpg"
-					scale={imageScale}
-					position-z={0.01}
-				/>
-				<Frame scale={0.5} position-x={-0.4} />
+				{projectData.map((project) => (
+					<group
+						key={project.id}
+						position-x={project.x}
+						onClick={() => {
+							window.open(project.link, "_blank")
+						}}
+						onPointerOver={() => setHovered(true)}
+						onPointerOut={() => setHovered(false)}
+					>
+						<Frame scale={0.5} />
+						<Image
+							url={project.img}
+							scale={imageScale}
+							position-z={0.01}
+						/>
+					</group>
+				))}
 			</group>
 
 			{/* Ceiling Fan */}
