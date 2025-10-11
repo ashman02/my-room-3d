@@ -10,8 +10,9 @@ import LightBulb from "./models/LightBulb"
 import { CuboidCollider, RigidBody } from "@react-three/rapier"
 import Switch from "./models/Switch"
 import useRoom from "../store/useRoom"
-import { projectData } from "../utils/data"
+import { data } from "../utils/data"
 import { useState } from "react"
+import Envelopes from "./models/Envelopes"
 // import Chair from "./Chair"
 
 const RoomContent = () => {
@@ -81,6 +82,11 @@ const RoomContent = () => {
 					position={[-0.04, 0.642, 0]}
 					rotation-y={Math.PI * 0.5}
 				/>
+				<Envelopes
+					scale={0.12}
+					position={[0, 0.68, 0.5]}
+					rotation-y={Math.PI}
+				/>
 				{/* We will fix this later */}
 				{/* <Chair scale={4} /> */}
 			</group>
@@ -102,7 +108,7 @@ const RoomContent = () => {
 			<group
 				position={[framePosition.x, framePosition.y, framePosition.z]}
 			>
-				{projectData.map((project) => (
+				{data.project.projects.map((project) => (
 					<group
 						key={project.id}
 						position-x={project.x}
@@ -144,8 +150,7 @@ const RoomContent = () => {
 				rotation-y={-Math.PI * 0.5}
 				position={[2.49, 1.5, 0]}
 			>
-				Hi nice to meet you. My name is Ashman and I am a full stack
-				creative developer. Welcome in my world.
+				{data.about.description}
 			</Text>
 
 			<Switch
