@@ -9,6 +9,7 @@ import { type GLTF } from "three-stdlib"
 import { useEffect, useState, type JSX } from "react"
 import { useFrame } from "@react-three/fiber"
 import { data } from "../../utils/data"
+import Tooltip from "../Tooltip"
 
 type GLTFResult = GLTF & {
 	nodes: {
@@ -54,6 +55,7 @@ export default function Envelopes(props: JSX.IntrinsicElements["group"]) {
 			onPointerLeave={() => setMailboxHovered(false)}
 			onClick={() => window.open(`mailto:${data.contact.mail}`)}
 		>
+			{mailboxHovered && <Tooltip position-x={2.5}>{data.contact.tooltip}</Tooltip>}
 			<mesh
 				geometry={nodes["Node-Mesh"].geometry}
 				material={materials.mat18}

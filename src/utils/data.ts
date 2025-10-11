@@ -36,7 +36,9 @@ export const data = {
 			},
 		],
 	},
+	book : "I'm Reading The Subtle Art of Not Giving A F*ck",
 	contact: {
+		tooltip : "Contact Me",
 		mail: "sidhuashman02@gmail.com",
 	},
 }
