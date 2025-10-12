@@ -16,7 +16,7 @@ const Room = () => {
 		<>
 			{/* Floor */}
 			<RigidBody type="fixed">
-				<mesh geometry={boxGeometry} scale={[5, 0.1, 4]}>
+				<mesh geometry={boxGeometry} scale={[5, 0.1, 4]} receiveShadow>
 					<meshStandardMaterial map={floorTexture} />
 				</mesh>
 			</RigidBody>
@@ -28,6 +28,7 @@ const Room = () => {
 					material={wallMaterial}
 					geometry={boxGeometry}
 					scale={[0.1, 3, 4]}
+					receiveShadow
 				/>
 
 				{/* front wall */}
@@ -37,6 +38,7 @@ const Room = () => {
 					material={wallMaterial}
 					geometry={boxGeometry}
 					scale={[0.1, 3, 5]}
+					receiveShadow
 				/>
 
 				{/* left wall with window */}
@@ -47,6 +49,7 @@ const Room = () => {
 						material={wallMaterial}
 						geometry={boxGeometry}
 						scale={[0.1, 3, 1.725]}
+						receiveShadow
 					/>
 					{/* upper part of the window */}
 					<mesh
@@ -54,6 +57,7 @@ const Room = () => {
 						material={wallMaterial}
 						geometry={boxGeometry}
 						scale={[0.1, 1.2, 0.55]}
+						receiveShadow
 					/>
 					<Window scale={1} />
 					{/* lower part of the window */}
@@ -62,6 +66,7 @@ const Room = () => {
 						material={wallMaterial}
 						geometry={boxGeometry}
 						scale={[0.1, 1.2, 0.55]}
+						receiveShadow
 					/>
 					{/* left part */}
 					<mesh
@@ -69,6 +74,7 @@ const Room = () => {
 						material={wallMaterial}
 						geometry={boxGeometry}
 						scale={[0.1, 3, 1.725]}
+						receiveShadow
 					/>
 				</group>
 
@@ -77,13 +83,14 @@ const Room = () => {
 				{/* Door  */}
 				{/* Door upper wall */}
 
-				<group position-z={2.05}>
+				<group position-z={2.05} >
 					<mesh
 						material={wallMaterial}
 						geometry={boxGeometry}
 						scale={[0.1, 3, 3.75]}
 						rotation-y={Math.PI * 0.5}
 						position={[-0.625, 1.5, 0]}
+						receiveShadow
 					/>
 
 					<Door
@@ -97,6 +104,7 @@ const Room = () => {
 						rotation-y={Math.PI * 0.5}
 						scale={[0.1, 0.78, 1.26]}
 						position={[1.875, 2.61, 0]}
+						receiveShadow
 					/>
 				</group>
 			</RigidBody>

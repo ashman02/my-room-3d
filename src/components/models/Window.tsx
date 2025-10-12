@@ -28,10 +28,12 @@ export default function Window(props: JSX.IntrinsicElements["group"]) {
 			<mesh
 				geometry={nodes["Node-Mesh"].geometry}
 				material={materials.mat24}
+				
 			/>
 			<mesh
 				geometry={nodes["Node-Mesh_1"].geometry}
 				material={materials.mat20}
+				receiveShadow
 			/>
 		</group>
 	)

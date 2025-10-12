@@ -214,10 +214,14 @@ export default function Bookshelf(props: JSX.IntrinsicElements["group"]) {
 			<mesh
 				geometry={nodes.group1157935093.geometry}
 				material={materials.mat20}
+				castShadow
+				receiveShadow
 			/>
 			<mesh
 				geometry={nodes.group1627220740.geometry}
 				material={materials.mat20}
+				castShadow
+				receiveShadow
 			/>
 			<mesh
 				geometry={nodes.group1141386355.geometry}
@@ -238,10 +242,12 @@ export default function Bookshelf(props: JSX.IntrinsicElements["group"]) {
 			<mesh
 				geometry={nodes.group769714903.geometry}
 				material={materials.mat14}
+				
 			/>
 			<mesh
 				geometry={nodes.group1142439874.geometry}
 				material={materials.mat21}
+				
 			/>
 			<mesh
 				geometry={nodes.group358796304.geometry}

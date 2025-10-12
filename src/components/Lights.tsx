@@ -50,6 +50,11 @@ const Lights = () => {
 				intensity={isLightOn ? 2.0 : 0.0}
 				decay={decay}
 				position={[pointPosition.x, pointPosition.y, pointPosition.z]}
+				castShadow
+				shadow-mapSize-width={512}
+				shadow-mapSize-height={512}
+				shadow-camera-near={1}
+				shadow-camera-far={7}
 			/>
 
 			{/* A light for the moonlight */}
@@ -62,6 +67,12 @@ const Lights = () => {
 				penumbra={moonPenumbra}
 				decay={moonDecay}
 				position={[moonPosition.x, moonPosition.y, moonPosition.z]}
+				castShadow
+				shadow-mapSize-width={512}
+				shadow-mapSize-height={512}
+				shadow-camera-near={1}
+				shadow-camera-far={7}
+				shadow-bias={-0.002}
 			/>
 		</>
 	)

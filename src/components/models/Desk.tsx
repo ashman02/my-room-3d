@@ -48,8 +48,8 @@ export default function Desk(props: JSX.IntrinsicElements['group']) {
         <mesh geometry={nodes.Desk_Drawer1_2.geometry} material={materials.Wood} />
       </group>
       <group rotation={[-Math.PI / 2, 0, 0]} scale={100}>
-        <mesh geometry={nodes.Desk_1.geometry} material={materials.DarkWood} />
-        <mesh geometry={nodes.Desk_2.geometry} material={materials.Wood} />
+        <mesh geometry={nodes.Desk_1.geometry} material={materials.DarkWood} castShadow receiveShadow />
+        <mesh geometry={nodes.Desk_2.geometry} material={materials.Wood} castShadow receiveShadow />
       </group>
     </group>
   )

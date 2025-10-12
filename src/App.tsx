@@ -65,6 +65,7 @@ function App() {
 					style={{
 						touchAction: "none",
 					}}
+					shadows
 				>
 					<Perf position="top-left" />
 					<Experience />

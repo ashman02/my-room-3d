@@ -59,10 +59,12 @@ export default function Envelopes(props: JSX.IntrinsicElements["group"]) {
 			<mesh
 				geometry={nodes["Node-Mesh"].geometry}
 				material={materials.mat18}
+				receiveShadow
 			/>
 			<mesh
 				geometry={nodes["Node-Mesh_1"].geometry}
 				material={materials.mat19}
+				receiveShadow
 			/>
 		</group>
 	)

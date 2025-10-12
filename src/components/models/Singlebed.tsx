@@ -35,18 +35,21 @@ const Singlebed = (props: JSX.IntrinsicElements["group"]) => {
 			dispose={null}
 			
 		>
-			<mesh geometry={nodes.cover.geometry} material={materials.carpet} />
+			<mesh geometry={nodes.cover.geometry} material={materials.carpet} receiveShadow />
 			<mesh
 				geometry={nodes.bedSingle_2.geometry}
 				material={materials.carpetWhite}
+				receiveShadow
 			/>
 			<mesh
 				geometry={nodes.bedSingle_2_1.geometry}
 				material={materials.wood}
+				receiveShadow
 			/>
 			<mesh
 				geometry={nodes.bedSingle_2_2.geometry}
 				material={materials.metal}
+				receiveShadow
 			/>
 		</group>
 	)
