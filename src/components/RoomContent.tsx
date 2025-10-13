@@ -13,7 +13,12 @@ import useRoom from "../store/useRoom"
 import { data } from "../utils/data"
 import { useState } from "react"
 import Envelopes from "./models/Envelopes"
+import { Color, MeshBasicMaterial } from "three"
 // import Chair from "./Chair"
+
+const textMaterial = new MeshBasicMaterial()
+textMaterial.toneMapped = false
+textMaterial.color = new Color().setRGB(3.5, 92/255, 0)
 
 const RoomContent = () => {
 	const { isLightOn, switchLight } = useRoom((state) => state)
@@ -149,6 +154,7 @@ const RoomContent = () => {
 				lineHeight={1}
 				rotation-y={-Math.PI * 0.5}
 				position={[2.49, 1.5, 0]}
+				material={textMaterial}
 			>
 				{data.about.description}
 			</Text>

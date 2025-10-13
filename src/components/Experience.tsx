@@ -4,10 +4,12 @@ import Lights from "./Lights"
 import OuterEnvironment from "./OuterEnvironment"
 import MyAvatar from "./MyAvatar"
 import { Physics } from "@react-three/rapier"
+import PostEffects from "./PostEffects"
 
 const Experience = () => {
 	return (
 		<>
+			<PostEffects />
 			<color args={["#041A40"]} attach={"background"} />
 			<Lights />
 			<Physics>

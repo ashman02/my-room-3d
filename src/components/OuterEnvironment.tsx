@@ -15,7 +15,7 @@ const OuterEnvironment = () => {
 				{/* our moon geometry */}
 				<mesh>
 					<sphereGeometry args={[0.4, 16, 16]} />
-					<meshBasicMaterial map={moonTexture} />
+					<meshBasicMaterial color={[7.5,7.5,7.5]} map={moonTexture} toneMapped={false} />
 				</mesh>
 				{/* Stars  */}
 				<Sparkles
