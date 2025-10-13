@@ -24,7 +24,7 @@ type GLTFResult = GLTF & {
 export default function Door(props: JSX.IntrinsicElements["group"]) {
 	const group = useRef<THREE.Group>(null)
 	const { nodes } = useGLTF(
-		"https://vazxmixjsiawhamofees.supabase.co/storage/v1/object/public/models/door/model.gltf"
+		"/models/door.gltf"
 	) as unknown as GLTFResult
 	return (
 		<group ref={group} {...props} dispose={null}>
@@ -60,5 +60,5 @@ export default function Door(props: JSX.IntrinsicElements["group"]) {
 }
 
 useGLTF.preload(
-	"https://vazxmixjsiawhamofees.supabase.co/storage/v1/object/public/models/door/model.gltf"
+	"/models/door.gltf"
 )
