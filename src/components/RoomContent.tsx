@@ -14,11 +14,12 @@ import { data } from "../utils/data"
 import { useState } from "react"
 import Envelopes from "./models/Envelopes"
 import { Color, MeshBasicMaterial } from "three"
+import MonitorScreen from "./MonitorScreen"
 // import Chair from "./Chair"
 
 const textMaterial = new MeshBasicMaterial()
 textMaterial.toneMapped = false
-textMaterial.color = new Color().setRGB(3.5, 92/255, 0)
+textMaterial.color = new Color().setRGB(3.5, 92 / 255, 0)
 
 const RoomContent = () => {
 	const { isLightOn, switchLight } = useRoom((state) => state)
@@ -82,11 +83,10 @@ const RoomContent = () => {
 						position={[0, 0.5, 0]}
 					/>
 				</RigidBody>
-				<Computer
-					scale={0.001}
-					position={[-0.04, 0.642, 0]}
-					rotation-y={Math.PI * 0.5}
-				/>
+				<group position={[-0.04, 0.642, 0]} rotation-y={Math.PI * 0.5}>
+					<Computer scale={0.001} />
+					<MonitorScreen />
+				</group>
 				<Envelopes
 					scale={0.12}
 					position={[0, 0.68, 0.5]}
