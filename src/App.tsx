@@ -1,7 +1,7 @@
 import { Canvas } from "@react-three/fiber"
 import Experience from "./components/Experience"
 import { Leva } from "leva"
-import { Perf } from "r3f-perf"
+// import { Perf } from "r3f-perf"
 import { KeyboardControls, type KeyboardControlsEntry } from "@react-three/drei"
 import { useEffect, useMemo, useRef } from "react"
 
@@ -53,7 +53,7 @@ function App() {
 
 	return (
 		<>
-			<Leva />
+			<Leva hidden />
 			<KeyboardControls map={map}>
 				<Canvas
 					camera={{
@@ -67,7 +67,7 @@ function App() {
 					}}
 					shadows
 				>
-					<Perf position="top-left" />
+					{/* <Perf position="top-left" /> */}
 					<Experience />
 				</Canvas>
 			</KeyboardControls>

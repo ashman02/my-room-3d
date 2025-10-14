@@ -15,6 +15,7 @@ import { useState } from "react"
 import Envelopes from "./models/Envelopes"
 import { Color, MeshBasicMaterial } from "three"
 import MonitorScreen from "./MonitorScreen"
+import { useMobile } from "../hooks/useMobile"
 // import Chair from "./Chair"
 
 const textMaterial = new MeshBasicMaterial()
@@ -22,6 +23,7 @@ textMaterial.toneMapped = false
 textMaterial.color = new Color().setRGB(3.5, 92 / 255, 0)
 
 const RoomContent = () => {
+	const { scaleFactor, isMobile } = useMobile()
 	const { isLightOn, switchLight } = useRoom((state) => state)
 	const [hovered, setHovered] = useState(false)
 	useCursor(hovered, "pointer")
@@ -148,8 +150,8 @@ const RoomContent = () => {
 			{/* Intro Text on the bed wall */}
 			<Text
 				font="/fonts/bebas-neue.woff"
-				fontSize={0.2}
-				maxWidth={2}
+				fontSize={0.2 * scaleFactor}
+				maxWidth={isMobile ? 1 : 2}
 				textAlign="center"
 				lineHeight={1}
 				rotation-y={-Math.PI * 0.5}
