@@ -1,5 +1,14 @@
 @import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap");
 
+:root {
+	--loader-bg: #0b0d12;
+	--loader-fg: #e7ebf3;
+	--bar-bg: #1a2230;
+	--bar-fill: #6aa5ff;
+	--muted: #9aa7bd;
+	--accent: #7cffc7;
+}
+
 #root {
 	width: 100vw;
 	height: 100vh;
@@ -38,3 +47,209 @@ body {
 	justify-content: center;
 	font-size: 12px;
 }
+
+/* loader */
+.r3f-loader {
+	position: fixed;
+	overflow: hidden;
+	inset: 0;
+	background: radial-gradient(
+		1200px 600px at 20% 10%,
+		#101520 0%,
+		var(--loader-bg) 60%
+	);
+	color: var(--loader-fg);
+	z-index: 50;
+	display: grid;
+	place-items: center;
+	pointer-events: auto;
+	opacity: 1;
+	transform: translateZ(0);
+	transition: opacity 500ms ease, visibility 500ms ease;
+}
+
+.r3f-loader--ready .r3f-loader__bar-fill {
+	transition: width 350ms ease-in-out;
+}
+
+.r3f-loader__inner {
+	width: min(560px, 92vw);
+	display: grid;
+	gap: 18px;
+	padding: 28px;
+	border-radius: 16px;
+	background: rgba(7, 10, 15, 0.6);
+	backdrop-filter: blur(6px);
+	box-shadow: 0 12px 50px rgba(0, 0, 0, 0.45);
+	animation: cardIn 500ms ease both;
+}
+
+@keyframes cardIn {
+	from {
+		opacity: 0;
+		transform: translateY(10px) scale(0.98);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0) scale(1);
+	}
+}
+
+.r3f-loader__brand {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+	letter-spacing: 0.5px;
+	font-weight: 600;
+	user-select: none;
+}
+
+.r3f-logo-dot {
+	width: 10px;
+	height: 10px;
+	border-radius: 999px;
+	background: var(--accent);
+	display: inline-block;
+	box-shadow: 0 0 24px rgba(124, 255, 199, 0.75);
+	animation: pulse 1.6s ease-in-out infinite;
+}
+
+@keyframes pulse {
+	0%,
+	100% {
+		transform: scale(1);
+		opacity: 0.9;
+	}
+	50% {
+		transform: scale(1.25);
+		opacity: 1;
+	}
+}
+
+.r3f-logo-text {
+	font-size: 14px;
+	color: var(--muted);
+}
+
+.r3f-loader__bar {
+	height: 10px;
+	width: 100%;
+	background: var(--bar-bg);
+	border-radius: 999px;
+	overflow: hidden;
+	position: relative;
+}
+
+.r3f-loader__bar-fill {
+	height: 100%;
+	width: 0%;
+	background: linear-gradient(90deg, var(--bar-fill) 0%, #9fd0ff 100%);
+	border-radius: 999px;
+	box-shadow: inset 0 0 8px rgba(255, 255, 255, 0.25),
+		0 6px 18px rgba(40, 120, 255, 0.3);
+	transition: width 180ms ease;
+}
+
+.r3f-loader__meta {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+	color: var(--muted);
+	font-size: 13px;
+	line-height: 1.6;
+	flex-wrap: wrap;
+}
+
+.r3f-loader__pct {
+	font-variant-numeric: tabular-nums;
+	color: var(--loader-fg);
+}
+
+.r3f-loader__sep {
+	opacity: 0.5;
+}
+
+.r3f-loader__item {
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	max-width: 100%;
+}
+
+.r3f-loader__controls {
+	margin-top: 6px;
+	display: grid;
+	gap: 8px;
+	padding: 12px 12px;
+	border-radius: 12px;
+	background: rgba(20, 26, 36, 0.55);
+	border: 1px solid rgba(88, 104, 130, 0.18);
+}
+
+.r3f-controls__row {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+	color: var(--muted);
+	font-size: 13px;
+}
+
+.kbd {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	padding: 6px 10px;
+	border-radius: 8px;
+	background: #0f141c;
+	border: 1px solid #1f2a3a;
+	box-shadow: 0 2px 0 #0a0f16;
+	font-size: 12px;
+	color: #d7deea;
+	min-width: 32px;
+}
+
+.r3f-controls__desc {
+	color: var(--muted);
+	opacity: 0.9;
+}
+
+.r3f-loader__enter {
+	margin-top: 10px;
+	height: 44px;
+	border-radius: 10px;
+	background: linear-gradient(180deg, #6aa5ff, #3e7ef2);
+	color: #0b1020;
+	border: none;
+	font-weight: 700;
+	letter-spacing: 0.3px;
+	cursor: pointer;
+	transform: translateY(2px) scale(0.98);
+	transition: transform 200ms ease, box-shadow 200ms ease, opacity 300ms ease;
+	box-shadow: 0 10px 22px rgba(70, 130, 255, 0.35),
+		inset 0 -2px 0 rgba(0, 0, 0, 0.15);
+	opacity: 0;
+	pointer-events: none;
+}
+
+.r3f-loader__enter:hover {
+	transform: translateY(0px) scale(1);
+}
+
+.r3f-loader__enter.is-visible {
+	opacity: 1;
+	pointer-events: auto;
+	animation: popIn 380ms ease both;
+}
+
+@keyframes popIn {
+	from {
+		transform: translateY(8px) scale(0.96);
+	}
+	to {
+		transform: translateY(0) scale(1);
+	}
+}
+
+/* Dismiss transition:
+   When parent is removed (hidden state), rely on React unmount.
+   If you want a fade-out on click, you can manage a class toggle and animate opacity here. */

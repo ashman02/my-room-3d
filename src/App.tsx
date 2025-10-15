@@ -4,6 +4,7 @@ import { Leva } from "leva"
 // import { Perf } from "r3f-perf"
 import { KeyboardControls, type KeyboardControlsEntry } from "@react-three/drei"
 import { useEffect, useMemo, useRef } from "react"
+import Loader from "./components/Loader"
 
 type Controls = "forward" | "back" | "left" | "right"
 
@@ -55,6 +56,7 @@ function App() {
 		<>
 			<Leva hidden />
 			<KeyboardControls map={map}>
+				<Loader />
 				<Canvas
 					camera={{
 						fov: 45,
