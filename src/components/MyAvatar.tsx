@@ -7,6 +7,7 @@ import { useControls } from "leva"
 import { useKeyboardControls } from "@react-three/drei"
 import type { ControlsType } from "../App"
 import { degToRad, MathUtils } from "three/src/math/MathUtils.js"
+import { useMobile } from "../hooks/useMobile"
 
 // Functions to get shortest rotation paths made using chatgpt
 const normalizeAngle = (angle: number) => {
@@ -56,6 +57,8 @@ const MyAvatar = () => {
 	const cameraLookAt = useRef(new Vector3())
 	const [, get] = useKeyboardControls<ControlsType>()
 	const isClicking = useRef(false)
+
+	const {isMobile} = useMobile()
 
 	const footstepAudioRef = useRef(new Audio("/sounds/footsteps.mp3"))
 
@@ -186,7 +189,7 @@ const MyAvatar = () => {
 					<group
 						ref={cameraPosition}
 						position-y={1.8}
-						position-z={-1}
+						position-z={isMobile ? -1.5 : -1}
 					/>
 					<group ref={character}>
 						<Avatar scale={0.8} animation={animation} />

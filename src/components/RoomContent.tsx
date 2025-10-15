@@ -133,6 +133,15 @@ const RoomContent = () => {
 						/>
 					</group>
 				))}
+				<Text
+					font="/fonts/bebas-neue.woff"
+					fontSize={0.2 * scaleFactor}
+					maxWidth={isMobile ? 1 : 2}
+					position={[0.045, -0.3, 0]}
+					material={textMaterial}
+				>
+					{data.project.title}
+				</Text>
 			</group>
 
 			{/* Ceiling Fan */}

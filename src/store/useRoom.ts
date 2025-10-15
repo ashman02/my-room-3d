@@ -7,7 +7,7 @@ interface RoomState {
 }
 
 const useRoom = create<RoomState>()((set) => ({
-    isLightOn : true,
+    isLightOn : false,
     switchLight : () => set((state) => ({isLightOn : !state.isLightOn}))
 }))
 
